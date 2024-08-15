@@ -2,20 +2,20 @@
 
 
 class Solution {
-    // TreeNode class definition
-    class TreeNode {
-        int val;
-        TreeNode left, right;
+    // Node class definition
+    class Node {
+        int data;
+        Node left, right;
 
-        TreeNode(int val) {
-            this.val = val;
+        Node(int data) {
+            this.data = data;
             left = right = null;
         }
     }
 
-    public int findDist(TreeNode root, int a, int b) {
+    public int findDist(Node root, int a, int b) {
         // Find the LCA of nodes a and b
-        TreeNode lca = findLCA(root, a, b);
+        Node lca = findLCA(root, a, b);
 
         // Find the distance from LCA to node a and from LCA to node b
         int distA = findLevel(lca, a, 0);
@@ -26,13 +26,13 @@ class Solution {
     }
 
     // Helper function to find the Lowest Common Ancestor (LCA)
-    private TreeNode findLCA(TreeNode node, int a, int b) {
+    private Node findLCA(Node node, int a, int b) {
         if (node == null) return null;
 
-        if (node.val == a || node.val == b) return node;
+        if (node.data == a || node.data == b) return node;
 
-        TreeNode left = findLCA(node.left, a, b);
-        TreeNode right = findLCA(node.right, a, b);
+        Node left = findLCA(node.left, a, b);
+        Node right = findLCA(node.right, a, b);
 
         if (left != null && right != null) return node;
 
@@ -40,15 +40,17 @@ class Solution {
     }
 
     // Helper function to find the level (distance) of a node from the given root
-    private int findLevel(TreeNode node, int val, int level) {
+    private int findLevel(Node node, int data, int level) {
         if (node == null) return -1;
 
-        if (node.val == val) return level;
+        if (node.data == data) return level;
 
-        int left = findLevel(node.left, val, level + 1);
+        int left = findLevel(node.left, data, level + 1);
         if (left == -1) {
-            return findLevel(node.right, val, level + 1);
+            return findLevel(node.right, data, level + 1);
         }
         return left;
     }
 }
+
+///////

@@ -1,12 +1,12 @@
 // https://www.geeksforgeeks.org/problems/preorder-to-postorder4423/1
 
 
-class TreeNode {
-    int val;
-    TreeNode left, right;
+class Node {
+    int data;
+    Node left, right;
 
-    TreeNode(int val) {
-        this.val = val;
+    Node(int data) {
+        this.data = data;
         left = right = null;
     }
 }
@@ -14,11 +14,11 @@ class TreeNode {
 class Solution {
     private int index = 0;
 
-    public TreeNode bstFromPreorder(int[] preorder) {
+    public Node bst(int[] preorder) {
         return constructBST(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    private TreeNode constructBST(int[] preorder, int minValue, int maxValue) {
+    private Node constructBST(int[] preorder, int minValue, int maxValue) {
         if (index == preorder.length) {
             return null;
         }
@@ -31,7 +31,7 @@ class Solution {
         }
 
         // Create the root node for this subtree
-        TreeNode root = new TreeNode(value);
+        Node root = new Node(value);
         index++;
 
         // All elements less than the current value will form the left subtree
